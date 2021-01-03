@@ -1,0 +1,38 @@
+<div class="left-container">
+  <img class="product-image" [src]="product.imageURL" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" />
+</div>
+
+<div class="right-container">
+  <div class="product-details">
+
+    <h2>{{product.name}}</h2>
+    <p class="in-stock" *ngIf="product.availability">In stock</p>
+    <p class="out-of-stock" *ngIf="!product.availability">Out of stock</p>
+    <p><strong>Price: </strong>Rs. {{product.price}}</p>
+    <p><strong>Location: </strong>{{product.location}}</p>
+    <p class="description"><strong>Description: </strong>{{product.description}}</p>
+
+    <ng-container *ngIf="product.reviews?.length > 0">
+      <label class="reviews">Reviews</label>
+      <ng-container *ngFor="let review of product.reviews">
+        <img class="profile-pic" [src]="review.profilePic" />
+        <label class="user-name">{{review.user}}</label>
+        <span class="rating"
+          [ngClass]="{'green': review.rating == 5, 'orange': review.rating == 2, 'red': review.rating == 1}">
+          <ng-container *ngFor="let star of [].constructor(review.rating)">
+            <mat-icon>star</mat-icon>
+          </ng-container>
+        </span>
+        <p class="review">{{review.review}}</p>
+      </ng-container>
+    </ng-container>
+
+  </div>
+  <button mat-fab color="primary" matTooltip="Edit Product" class="edit-button"
+    routerLink="/product/edit/{{product.id}}">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <mat-card class="zoomed-image-container" [ngClass]="{'hidden': !showZoomedImage}">
+    <img class="product-image" [src]="product.imageURL" />
+  </mat-card>
+</div>

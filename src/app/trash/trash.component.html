@@ -1,0 +1,25 @@
+<div class="main-container">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let product of products">
+      <mat-card class="product-card">
+
+        <img mat-card-image class="product-image" [src]="product.imageURL" />
+
+        <div class="card-action">
+          <button mat-icon-button matTooltip="Delete Permanently" class="action-button"
+            (click)="deleteProduct(product.id)">
+            <mat-icon class="material-icons-outlined">delete_forever</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Restore" class="action-button" (click)="restoreProduct(product.id)">
+            <mat-icon class="material-icons-outlined">restore_from_trash</mat-icon>
+          </button>
+        </div>
+
+        <div class="card-title">{{ product.name }}</div>
+
+        <p class="description">{{ product.description }}</p>
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

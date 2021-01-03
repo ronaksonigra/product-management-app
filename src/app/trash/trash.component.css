@@ -1,0 +1,39 @@
+.main-container {
+  width: 100%;
+  height: calc(100% - 60px);
+  float: right;
+  overflow-y: auto;
+  background-color: lightgrey;
+}
+.product-card {
+  margin: 20px;
+  height: 80%;
+  width: 80%;
+}
+.product-image {
+  height: 70%;
+  width: calc(100% + 32px);
+  margin-bottom: 0;
+}
+.card-action {
+  width: 30%;
+  height: 40px;
+  float: right;
+}
+.action-button {
+  float: right;
+}
+.card-title {
+  width: 70%;
+  height: 34px;
+  padding-top: 6px;
+  font-size: 24px;
+  float: left;
+}
+.description {
+  margin-left: -1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 4.5rem;
+  line-height: 1.5rem;
+}

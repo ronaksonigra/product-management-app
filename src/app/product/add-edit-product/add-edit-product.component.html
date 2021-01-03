@@ -1,0 +1,83 @@
+<form class="product-form" (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Product Name</mat-label>
+      <input matInput name="productName" #productName="ngModel" [(ngModel)]="product.name" maxlength="50" required>
+      <mat-error *ngIf="productName.invalid && (productName.dirty || productName.touched)">
+        <div *ngIf="productName.errors.required">
+          Product Name is required.
+        </div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" name="price" #price="ngModel" [(ngModel)]="product.price" required>
+      <span matPrefix>Rs.&nbsp;</span>
+      <mat-error *ngIf="price.invalid && (price.dirty || price.touched)">
+        <div *ngIf="price.errors.required">
+          Price is required.
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <mat-radio-group>
+      <mat-radio-button value="1" [checked]="product.availability" (click)="setAvailability(true)">In stock
+      </mat-radio-button>
+      <mat-radio-button value="2" [checked]="!product.availability" (click)="setAvailability(false)">Out of stock
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Location</mat-label>
+      <mat-select name="location" #location='ngModel' [(ngModel)]="product.location" required>
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="location.invalid && (location.dirty || location.touched)">
+        <div *ngIf="location.errors.required">
+          Location is required.
+        </div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="image-url">
+      <mat-label>Image URL</mat-label>
+      <input matInput name="imageURL" #imageURL='ngModel' [(ngModel)]="product.imageURL" required>
+      <mat-hint *ngIf="imageURL.valid">
+        <div *ngIf="!checkURL(product.imageURL)" class="warning">
+          Warning: Image URL seems invalid, please verify it.
+        </div>
+      </mat-hint>
+      <mat-error *ngIf="imageURL.invalid && (imageURL.dirty || imageURL.touched)">
+        <div *ngIf="imageURL.errors.required">
+          Image URL is required.
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="legacy" class="description">
+      <mat-label>Description</mat-label>
+      <textarea matInput name="description" #description='ngModel' [(ngModel)]="product.description" minlength="150"
+        required></textarea>
+      <mat-error *ngIf="description.invalid && (description.dirty || description.touched)">
+        <div *ngIf="description.errors.required">
+          Description is required.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          Description should be more than 150 charaters.
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" class="save-button" type="submit" [disabled]="!productForm.valid">
+    Save
+  </button>
+  <button mat-raised-button class="cancel-button" type="button" (click)="cancel()">
+    Cancel
+  </button>
+</form>

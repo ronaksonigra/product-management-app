@@ -1,0 +1,58 @@
+<div class="left-container">
+  <section class="filter-container">
+    <label class="filter-label">Price</label>
+    <mat-checkbox [(ngModel)]="productFilters.price.lessThan1000" (change)="refreshProducts()">Less than Rs. 1001
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.price.between1001And2000" (change)="refreshProducts()">Rs. 1001 - Rs. 2000
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.price.between2001And3000" (change)="refreshProducts()">Rs. 2001 - Rs. 3000
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.price.between3001And4000" (change)="refreshProducts()">Rs. 3001 - Rs. 4000
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.price.between4001And5000" (change)="refreshProducts()">Rs. 4001 - Rs. 5000
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.price.moreThan5000" (change)="refreshProducts()">More than Rs. 5000
+    </mat-checkbox>
+  </section>
+  <section class="filter-container">
+    <label class="filter-label">Location</label>
+    <mat-checkbox [(ngModel)]="productFilters.location.ahmedabad" (change)="refreshProducts()">Ahmedabad</mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.location.chennai" (change)="refreshProducts()">Chennai</mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.location.delhi" (change)="refreshProducts()">Delhi</mat-checkbox>
+    <mat-checkbox [(ngModel)]="productFilters.location.mumbai" (change)="refreshProducts()">Mumbai</mat-checkbox>
+  </section>
+  <section class="filter-container">
+    <label class="filter-label">Availability</label>
+    <mat-radio-group>
+      <mat-radio-button value="1" [checked]="productFilters.availability" (click)="availabilityToggle(true)">In stock
+      </mat-radio-button>
+      <mat-radio-button value="2" [checked]="!productFilters.availability" (click)="availabilityToggle(false)">Out of
+        stock</mat-radio-button>
+    </mat-radio-group>
+  </section>
+</div>
+<div class="main-container">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let product of products">
+      <mat-card class="product-card">
+        <img mat-card-image class="product-image" [src]="product.imageURL" routerLink="/product/{{product.id}}">
+        <div class="card-action">
+          <button mat-icon-button matTooltip="Delete" class="action-button" (click)="disableProduct(product.id)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Like/Unlike" class="action-button" (click)="toggleLikeButton(product.id)">
+            <mat-icon *ngIf="!product.liked">favorite_border</mat-icon>
+            <mat-icon *ngIf="product.liked" class="active">favorite</mat-icon>
+          </button>
+        </div>
+        <div class="card-title" routerLink="/product/{{product.id}}">{{product.name}}</div>
+        <p class="description" routerLink="/product/{{product.id}}">
+          {{product.description}}
+        </p>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <button mat-fab matTooltip="Add Product" color="primary" class="add-button" routerLink="/product/add/0">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

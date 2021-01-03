@@ -1,0 +1,31 @@
+.product-form {
+  height: calc(100% - 90px);
+  padding: 15px;
+  overflow-y: auto;
+}
+.save-button {
+  position: absolute;
+  bottom: 15px;
+  right: 105px;
+}
+.cancel-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+mat-form-field,
+mat-radio-button {
+  margin-right: 15px;
+}
+.image-url {
+  width: 440px;
+}
+.description {
+  width: 636px;
+}
+.description textarea {
+  min-height: 100px;
+}
+.warning {
+  color: orange;
+}

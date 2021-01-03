@@ -1,0 +1,51 @@
+.navbar-container {
+  height: 100%;
+}
+.navbar {
+  width: 70px;
+  background-color: grey;
+}
+.menu-container {
+  height: 70px;
+  width: 100%;
+  text-align: center;
+}
+.top-container {
+  height: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+}
+.search-products {
+  width: 300px;
+  position: absolute;
+  right: 20px;
+}
+.top-left-container {
+  padding: 15px;
+  width: 200px;
+  float: left;
+  position: fixed;
+  left: 70px;
+  top: 5px;
+}
+.level-label {
+  margin: 15px 15px 0 0;
+}
+.level-2 {
+  opacity: 50%;
+}
+.back-button {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.top-container .menu-button {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.menu-button {
+  margin-top: 10px;
+}
+.menu-label {
+  font-size: 14px;
+}
