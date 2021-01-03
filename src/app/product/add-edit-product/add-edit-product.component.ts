@@ -26,7 +26,7 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  async onSubmit(action: string) {
+  async onSubmit() {
     await this.productService.addUpdateProduct(this.product);
     this._snackBar.open('Product saved successfully!', 'Dismiss', {
       duration: 5000,
